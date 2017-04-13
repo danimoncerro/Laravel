@@ -20,4 +20,9 @@ Route::get('/products', 'ProductController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/categories/create', 'CategoryController@create');
+Route::get('/categories/{id}/edit', 'CategoryController@edit');
+Route::get('/categories/{id}/delete', 'CategoryController@delete');
+Route::post('/categories/save', 'CategoryController@save');
 Route::get('/categories', 'CategoryController@index');

@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->decimal('price', 10, 2);
             $table->integer('category_id');
+            $table->timestamps(); // adauga coloane noi pentru data si ora exacta creare si actualizare 
         });
     }
 
