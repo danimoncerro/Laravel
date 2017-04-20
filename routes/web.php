@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'ProductController@index');
+//Route::get('/products/create', 'ProductController@create');
+//Route::get('/products/{id}/edit', 'ProductController@edit');
+//Route::get('/products/{id}/delete', 'ProductController@delete');
+//Route::get('/products/save', 'ProductController@save');
 
 Auth::routes();
 
@@ -26,3 +30,4 @@ Route::get('/categories/{id}/edit', 'CategoryController@edit');
 Route::get('/categories/{id}/delete', 'CategoryController@delete');
 Route::post('/categories/save', 'CategoryController@save');
 Route::get('/categories', 'CategoryController@index');
+

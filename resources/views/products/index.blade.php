@@ -23,7 +23,13 @@
 							<td>{{$product->title}}</td>
 							<td>{{$product->price}}</td>
 							<td>{{$product->stock}}</td>
-							<td>{{$product->category->title}}</td>
+							<td>
+								@if(isset($product->category))
+									{{$product->category->title}}
+								@else
+									Nu exista aceasta categorie
+								@endif
+							</td>
 						</tr>
 					@endforeach
 				</table>
