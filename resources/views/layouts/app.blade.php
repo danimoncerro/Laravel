@@ -49,6 +49,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                            <li><a href="/products">Produse</a></li>
+                            <li><a href="/categories">Categorii</a></li>
+                            <li><a href="/products/cart">Cosul meu</a></li>
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>

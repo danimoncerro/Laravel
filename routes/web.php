@@ -20,6 +20,9 @@ Route::get('/products', 'ProductController@index');
 //Route::get('/products/{id}/edit', 'ProductController@edit');
 //Route::get('/products/{id}/delete', 'ProductController@delete');
 //Route::get('/products/save', 'ProductController@save');
+Route::get('/products/add-to-cart/{id}/{q}', 'ProductController@addToCart');
+Route::get('/products/cart', 'ProductController@cart');
+Route::get('/products/cart/{id}/delete', 'ProductController@deleteFromCart');
 
 Auth::routes();
 

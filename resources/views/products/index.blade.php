@@ -15,6 +15,7 @@
 						<th>Price</th>
 						<th>Stock</th>
 						<th>Category</th>
+						<th>Actions</th>
 					</tr>
 
 					@foreach($products as $product)
@@ -29,6 +30,9 @@
 								@else
 									Nu exista aceasta categorie
 								@endif
+							</td>
+							<td>	
+								<a href="/products/add-to-cart/{{$product->id}}/1">Adauga in cos</a>
 							</td>
 						</tr>
 					@endforeach
