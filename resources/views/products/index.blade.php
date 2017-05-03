@@ -31,8 +31,18 @@
 									Nu exista aceasta categorie
 								@endif
 							</td>
-							<td>	
-								<a href="/products/add-to-cart/{{$product->id}}/1">Adauga in cos</a>
+							<td>
+								
+                  					                           
+             				<?php /*	<a href="/products/add-to-cart/{{$product->id}}/1">Adauga in cos</a> 
+							*/?>
+             					<form action="/products/add-to-cart/{{$product->id}}/1" method="GET">
+                  					<input type="hidden" value="<?php echo $product->id ?>" name="id">
+                  					<input type="number" name="cantitate" min="1" max="500" value="1">
+                					<input type="submit" value="Adauga in cos">
+                				</form>
+
+
 							</td>
 						</tr>
 					@endforeach

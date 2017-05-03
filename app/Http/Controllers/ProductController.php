@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Controllers\Controller;
+session_start();
 
 class ProductController extends Controller
 {
@@ -16,9 +17,9 @@ class ProductController extends Controller
     /**
      * Adauga un cos 
      **/
-    public function addToCart(Request $request, $id, $q)
+    public function addToCart(Request $request, $id)
     {
-
+    	$q = $_GET["cantitate"];
     	// Citim produsul
     	$product = Product::find($id);
 
@@ -73,5 +74,20 @@ class ProductController extends Controller
     	$request->session()->put('cart', $cart);
 
     	return redirect('/products/cart');
+    }
+
+    public function totalCart()
+    {
+
+    	$cart = $request->session()->get('cart', []);
+
+    	$total = 0;
+    	foreach($cart as $item)
+    	{
+					
+			$total+= $item['price'] * $item['q'];
+			return $total;
+		}
+    	
     }
 }
