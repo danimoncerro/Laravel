@@ -1,3 +1,22 @@
+<?php
+
+// session_start();
+/*
+if (isset($_SESSION['cart'])){
+    $cart = $_SESSION['cart'];
+    var_dump($cart);
+    exit;
+}
+*/
+// var_dump($_SESSION);
+
+//dd(session('cart'));
+$cart = session('cart');
+ 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -51,7 +70,14 @@
                         <!-- Authentication Links -->
                             <li><a href="/products">Produse</a></li>
                             <li><a href="/categories">Categorii</a></li>
-                            <li><a href="/products/cart">Cosul meu</a></li>
+
+                            <?/*php $cantitate = 0;
+                                foreach($cart as $item)
+                                {
+                                    $cantitate+= $item['q'];
+                                }
+                            */?>
+                            <li><a href="/products/cart">Cosul meu <span class="badge" align="center">{{ count($cart) }} </span></a></li>
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>

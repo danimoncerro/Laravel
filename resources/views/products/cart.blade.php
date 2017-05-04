@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-	<div class="container">
+<div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<h1>Cosul meu</h1>
+
+			@if (count($cart)==0)
+				<h2>Cosul este gol</h2>
+			@else
 				<table class="table table-bordered">
 					
 				<tr>
@@ -25,12 +26,7 @@
 						<td>{{ $item['product_id'] }}</td>
 						<td>{{ $item['title'] }}</td>
 						<td>
-							<form action="/products/add-to-cart/{{$item['product_id']}}/1" method="GET">
-                  					
-                  					<input type="number" name="cantitate" min="1" max="500" value="{{$item['q']}}">
-                					<input type="submit" value="Actualizeaza cos">
-               				</form>
-
+						@include('products.add_to_cart', ['productId' => $item['product_id'], 'q' => $item['q'] ])
 						</td>
 						<td>{{ $item['price'] }}</td>
 						<td>{{ $item['price'] * $item['q']}}</td>
@@ -40,33 +36,15 @@
 					</tr>
 					
 				@endforeach
-				
 
 				</table>
+				<a href="/products/empty-cart" class="btn btn-success">Goleste cos</a>
 
-				<?php 
-					if($cart==null)
-						echo "<br>"."Cosul este gol!";
-				 ?>
 				<br><br>
-				<h1>Valoarea totala a cosului este:
-					<?php $total = 0;
-    					  foreach($cart as $item)
-    					  {
-					
-						   	$total+= $item['price'] * $item['q'];
-					      }
-						  echo $total." lei" ?>
-
-				</h1>
-
-
-				
+				<h1>Valoarea totala a cosului este: {{ $cartTotal }} lei (fara tva)</h1>
+				<h1>Valoarea totala a cosului este: {{ $cartTotal*1.19 }} lei (cu tva)</h1>
+			@endif
 		</div>
 	</div>
-	</div>
-
-
-
-
+</div>
 @endsection

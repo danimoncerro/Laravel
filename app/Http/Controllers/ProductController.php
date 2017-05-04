@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Controllers\Controller;
-session_start();
+
 
 class ProductController extends Controller
 {
@@ -19,7 +19,12 @@ class ProductController extends Controller
      **/
     public function addToCart(Request $request, $id)
     {
-    	$q = $_GET["cantitate"];
+
+    	// Citeste din: input, cookie, session, route, etc//
+    	// $all = $request->all();
+
+    	$q = $request->get('cantitate');
+
     	// Citim produsul
     	$product = Product::find($id);
 
@@ -45,7 +50,7 @@ class ProductController extends Controller
     	// ];
 
     	// Citirea tuturor valorilor
-    	$values = $request->session()->all();
+    	// $values = $request->session()->all();
 
     	// redirectam catre cosul meu
     	return redirect('/products/cart');
@@ -55,8 +60,9 @@ class ProductController extends Controller
     public function cart(Request $request)
     {
     	$cart = $request->session()->get('cart', []);
+    	$cartTotal = $this->totalCart($cart);
 
-    	return view('products.cart', compact('cart'));
+    	return view('products.cart', compact('cart', 'cartTotal'));
     }
 
     public function deleteFromCart(Request $request, $id)
@@ -76,18 +82,21 @@ class ProductController extends Controller
     	return redirect('/products/cart');
     }
 
-    public function totalCart()
+    protected function totalCart($cart)
     {
-
-    	$cart = $request->session()->get('cart', []);
-
     	$total = 0;
     	foreach($cart as $item)
     	{
-					
 			$total+= $item['price'] * $item['q'];
-			return $total;
 		}
-    	
+
+		return $total;
+    }
+
+    public function emptyCart(Request $request)
+    {
+    	// $request->session()->put('cart', []);
+    	$request->session()->forget('cart'); // sterge complet $_SESSION['cart']
+    	return redirect('products/cart');
     }
 }
