@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Controllers\Controller;
 
-
 class ProductController extends Controller
 {
     public function index()
@@ -98,5 +97,75 @@ class ProductController extends Controller
     	// $request->session()->put('cart', []);
     	$request->session()->forget('cart'); // sterge complet $_SESSION['cart']
     	return redirect('products/cart');
+    }
+
+    public function create(Request $request) 
+    {
+     echo "Hello World";
+
+      //  dd($request);
+      // Pentru ca avem $fillable in model Event 
+        $product = Product::create([
+            'title' => $request->title,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect('/products/');
+
+        // $event = new Event();
+        // $event->title = 'Titlu test';
+        // $event->location = 'Baia mare';
+        // $event->seat = 40;
+
+        // $event->save();
+
+        //echo 'Event saved';
+        
+    }
+
+    public function addProduct()
+    {
+        return view('products.form_create');
+    }
+
+     public function addProduct1()
+    {
+        return view('products.form1_create');
+    }
+
+    public function edit($id)
+    {
+        
+        $product = Product::find($id);
+
+        return view('products.form_edit', compact('product'));
+    }
+
+    public function save(Request $request)
+    {
+     
+        $product = Product::find($request->id);
+     
+        $product->title = $request->title;
+        $product->stock = $request->stock;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+
+
+        $product->save();
+
+        // redirect catre listare categorii
+        return redirect('/products');
+    }
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+
+        // redirect catre listare categorii
+        return redirect('/products');
     }
 }

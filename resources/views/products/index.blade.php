@@ -8,6 +8,12 @@
 
 				<h1> Produse </h1>
 
+				<p>
+					<a href="/products/add-product" class="btn btn-success">
+						Adauga
+					</a>
+				</p>
+
 				<table class="table table-bordered">
 					<tr>
 						<th>Id produs</th>
@@ -15,6 +21,7 @@
 						<th>Price</th>
 						<th>Stock</th>
 						<th>Category</th>
+						<th>Add to box</th>
 						<th>Actions</th>
 					</tr>
 
@@ -36,6 +43,14 @@
 									'productId' => $product->id, 
 									'q' => 1
 								])
+							</td>
+							<td>
+								<a href="/products/{{ $product->id }}/edit" class="btn btn-primary">
+									Editeaza
+								</a>
+								<a href="/products/{{ $product->id }}/delete" class="btn btn-danger">
+									Sterge
+								</a>
 							</td>
 						</tr>
 					@endforeach

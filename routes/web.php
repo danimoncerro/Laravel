@@ -15,15 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/events/create', 'EventController@create1');
+Route::get('/products/add-product', 'ProductController@addProduct');
+Route::get('/products/create', 'ProductController@create');
+
 Route::get('/products', 'ProductController@index');
 //Route::get('/products/create', 'ProductController@create');
-//Route::get('/products/{id}/edit', 'ProductController@edit');
-//Route::get('/products/{id}/delete', 'ProductController@delete');
-//Route::get('/products/save', 'ProductController@save');
+Route::get('/products/{id}/edit', 'ProductController@edit');
+Route::get('/products/{id}/delete', 'ProductController@delete');
+Route::post('/products/save', 'ProductController@save');
 Route::post('/products/add-to-cart/{id}', 'ProductController@addToCart');
 Route::get('/products/cart', 'ProductController@cart');
 Route::get('/products/cart/{id}/delete', 'ProductController@deleteFromCart');
 Route::get('/products/empty-cart', 'ProductController@emptyCart');
+Route::get('/products/hello', 'ProductController@addProduct1');
 
 Auth::routes();
 

@@ -7,4 +7,17 @@
 5) Incearca sa adaugi selectia de cantitate(adauga contitate)
 6) Pe pagina de cosul meu adauga actualizare cantitate
 
+7) Revizuire si joaca cu filleable
+8) Sa creezi alta entitate sau implementeaza adauga produs utilizand filleable
+9) Incearca sa implementezi istoric comanda 
+Tabel: orders 
+Fields: id, user_id, total_price, timestamps()
+
+Tabel: order_items
+Fields: id, order_id, product_id, quantity, product_price, subtotal_price, timestamp()s 
+
+9.2) Sa creezi o pagina pentru listare orders : /orders 
+9.3) Sa creezi o pagina pentru detalii order: /orders/{id}
+- sa listeze toate produsele ( design similar cu pagina de CARt / COSUL MEU)
+
 
