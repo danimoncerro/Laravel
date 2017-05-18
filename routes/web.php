@@ -31,6 +31,8 @@ Route::get('/products/empty-cart', 'ProductController@emptyCart');
 Route::get('/products/hello', 'ProductController@addProduct1');
 Route::post('/orders/create/{cartTotal}', 'OrderController@create');
 Route::get('/orders', 'OrderController@index');
+Route::get('/orders/{id}/view', 'OrderItemController@index');
+
 
 Auth::routes();
 

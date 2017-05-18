@@ -30,6 +30,9 @@ class OrderController extends Controller
         $cart = $request->session()->get('cart');
         $total = $this->totalCart($cart);
 
+        $product_id = $request->session()->get('cart', 'product_id');
+        
+
         // Citim user id pt userul logat 
         $user_id = Auth::id();
        
@@ -39,9 +42,10 @@ class OrderController extends Controller
             'total_price' => $total,
         ]);
 
+        $last_id = $order->id;
 
         //  Salvam itemurile in order_items 
-        $this->saveOrderItems($cart);
+        $this->saveOrderItems($cart, $last_id, $product_id);
 
         return redirect('/products/empty-cart');
              
@@ -49,7 +53,7 @@ class OrderController extends Controller
 
 
     // Save order items
-    protected function saveOrderItems($cart)
+    protected function saveOrderItems($cart, $last_id, $product_id)
     {
         //dd($cart);
         foreach($cart as $item)
@@ -60,19 +64,25 @@ class OrderController extends Controller
             $user_id = Auth::id();
             //$order_id = Order::all();
 
-            $order_id = DB::table('orders')                    
-                    ->select('orders.*', 'id')
-                    ->orderBy('orders.id', 'desc')
-                    ->get();
-      
-            dd($order_id);
+           // $order_id = DB::table('orders')                    
+           //         ->insertGetId(['field'])
+          //         ->get();
+           
+            $order_id = $last_id;
+            $product = $item['product_id'];
+            $quantity = $item['q'];
+            $price = $item['price'];
+            $subtotal = $quantity * $price;
+            
+
+           // dd($order_id);
        
             // Salvam 
             $order_item = OrderItem::create([
-            'order_id' => 7,
-            'product_id' => '9',
-            'quantity' => 10,
-            'price' => 25,
+            'order_id' => $last_id,
+            'product_id' => $product,
+            'quantity' => $quantity,
+            'price' => $price,
             'subtotal' => $subtotal,
         ]);
         }

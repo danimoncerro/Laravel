@@ -20,6 +20,7 @@
 					<th>Actions</th>
 				</tr>
 				
+				
 				@foreach($cart as $item)
 					
 					<tr>
@@ -44,7 +45,7 @@
 				<form action="/orders/create/{{ $cartTotal }}"  method="post">
 				{{ csrf_field() }}
 				<?php //<input type="hidden" name="id" value="{{ $cartTotal }}"> ?>
-				
+								
 				<input type="submit" name="submit" class="btn btn-success" value="Trimite comanda">
 			</form>
 				
