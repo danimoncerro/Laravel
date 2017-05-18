@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth; // use {namespace}/{classname}
 
 class ProductController extends Controller
 {
     public function index()
     {
+
     	$products = Product::all();
     	return view('products.index', compact('products'));
     }
@@ -58,8 +60,26 @@ class ProductController extends Controller
 
     public function cart(Request $request)
     {
+        // Demo cu utilizatorul autentificat
+        // $user = Auth::user();
+        // dump($user->name);
+        // dd($user);
+        // Check if user is logged in
+        // $isLoggedIn = Auth::check();
+        // dump($isLoggedIn);
+
+
+        // Read logged in user id 
+        // $userId = Auth::id();
+        // dd($userId);
+
+
+        // END Demo 
+
+
     	$cart = $request->session()->get('cart', []);
     	$cartTotal = $this->totalCart($cart);
+
 
     	return view('products.cart', compact('cart', 'cartTotal'));
     }
@@ -101,10 +121,7 @@ class ProductController extends Controller
 
     public function create(Request $request) 
     {
-     echo "Hello World";
-
-      //  dd($request);
-      // Pentru ca avem $fillable in model Event 
+     
         $product = Product::create([
             'title' => $request->title,
             'stock' => $request->stock,
@@ -128,11 +145,6 @@ class ProductController extends Controller
     public function addProduct()
     {
         return view('products.form_create');
-    }
-
-     public function addProduct1()
-    {
-        return view('products.form1_create');
     }
 
     public function edit($id)

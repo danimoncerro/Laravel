@@ -39,6 +39,15 @@
 
 				</table>
 				<a href="/products/empty-cart" class="btn btn-success">Goleste cos</a>
+				<br><br>
+				
+				<form action="/orders/create/{{ $cartTotal }}"  method="post">
+				{{ csrf_field() }}
+				<?php //<input type="hidden" name="id" value="{{ $cartTotal }}"> ?>
+				
+				<input type="submit" name="submit" class="btn btn-success" value="Trimite comanda">
+			</form>
+				
 
 				<br><br>
 				<h1>Valoarea totala a cosului este: {{ $cartTotal }} lei (fara tva)</h1>

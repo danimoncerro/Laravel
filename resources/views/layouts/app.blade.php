@@ -70,6 +70,7 @@ $cart = session('cart');
                         <!-- Authentication Links -->
                             <li><a href="/products">Produse</a></li>
                             <li><a href="/categories">Categorii</a></li>
+                            <li><a href="/orders">Istoric comenzi</a></li>
 
                             <?/*php $cantitate = 0;
                                 foreach($cart as $item)

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/events/create', 'EventController@create1');
 Route::get('/products/add-product', 'ProductController@addProduct');
-Route::get('/products/create', 'ProductController@create');
+Route::post('/products/create', 'ProductController@create');
 
 Route::get('/products', 'ProductController@index');
 //Route::get('/products/create', 'ProductController@create');
@@ -29,6 +29,8 @@ Route::get('/products/cart', 'ProductController@cart');
 Route::get('/products/cart/{id}/delete', 'ProductController@deleteFromCart');
 Route::get('/products/empty-cart', 'ProductController@emptyCart');
 Route::get('/products/hello', 'ProductController@addProduct1');
+Route::post('/orders/create/{cartTotal}', 'OrderController@create');
+Route::get('/orders', 'OrderController@index');
 
 Auth::routes();
 

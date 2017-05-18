@@ -4,7 +4,7 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<form action="/products/create" method="get">
+			<form action="/products/create" method="post">
 				{{ csrf_field() }}
 				<p>
 					<label> Nume produs: </label>
