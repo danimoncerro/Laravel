@@ -14,16 +14,21 @@
 						<th>Id</th>
 						<th>Utilizator</th>
 						<th>Valoare</th>
+						<th>Nr Items</th>
 						<th>Data</th>
+						<th>Status</th>
 						<th>Actions</th>
+
 					</tr>
 
 					@foreach($orders as $order)
 						<tr>
 							<td>{{$order->id}}</td>
-							<td>{{$order->name}}</td>
+							<td>{{$order->user->name}}</td>
 							<td>{{$order->total_price}}</td>
+							<td>{{$order->orderItems->count()  }}</td>
 							<td>{{$order->created_at}}</td>
+							<td>{{$order->status}}</td>
 							<td>
 								<a href="/orders/{{ $order->id }}/view" class="btn btn-primary">
 									Vizualizeaza comanda

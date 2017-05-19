@@ -10,8 +10,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-
     	$products = Product::all();
+
     	return view('products.index', compact('products'));
     }
 
@@ -54,8 +54,8 @@ class ProductController extends Controller
     	// $values = $request->session()->all();
 
     	// redirectam catre cosul meu
-    	return redirect('/products/cart');
 
+    	return redirect('/products/cart');
     }
 
     public function cart(Request $request)
@@ -79,7 +79,6 @@ class ProductController extends Controller
 
     	$cart = $request->session()->get('cart', []);
     	$cartTotal = $this->totalCart($cart);
-
 
     	return view('products.cart', compact('cart', 'cartTotal'));
     }
@@ -116,6 +115,7 @@ class ProductController extends Controller
     {
     	// $request->session()->put('cart', []);
     	$request->session()->forget('cart'); // sterge complet $_SESSION['cart']
+
     	return redirect('products/cart');
     }
 
@@ -149,7 +149,6 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        
         $product = Product::find($id);
 
         return view('products.form_edit', compact('product'));
@@ -157,7 +156,6 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-     
         $product = Product::find($request->id);
      
         $product->title = $request->title;

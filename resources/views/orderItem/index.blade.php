@@ -6,31 +6,38 @@
 	<div class="row">
 		<div class="col-md-12">
 
-				<h1> Detalii comanda </h1>
+				<h1> Detalii comanda (#{{ $order->id }}) </h1>
+				<h3> Status comanda: {{ $order->status }} </h3>
+
+				<div class="client">
+				<p>
+				  Nume client: {{ $order->user->name}}
+				</p>
+
+				</div>
 
 				<table class="table table-bordered">
 					<tr>
-						<th>Order ID</th>
+						<th>Nr crt.</th>
 						<th>Title</th>
 						<th>Quantity</th>
 						<th>Price</th>
 						<th>Value</th>
 						<th>Date</th>
 					</tr>
-					<?php $total = 0;  ?>
-					@foreach($orderItem as $order)
+
+					@foreach($order->orderItems as $k => $item)
 						<tr>
-							<td>{{$order->order_id}}</td>
-							<td>{{$order->product_id}}</td>
-							<td>{{$order->quantity}}</td>
-							<td>{{$order->price}}</td>
-							<td>{{$order->subtotal}}</td>
-							<td>{{$order->created_at}}</td>
+							<td>{{ ($k+1) }}</td>
+							<td>{{$item->product->title}}</td>
+							<td>{{$item->quantity}}</td>
+							<td>{{$item->price}}</td>
+							<td>{{$item->subtotal}}</td>
+							<td>{{$item->created_at}}</td>
 						</tr>
-						<?php $total = $total + $order->subtotal; ?>
 					@endforeach
 				</table>
-				<p>Valoarea totala a comenzii este: {{ $total }}</p>
+				<p>Valoarea totala a comenzii este: {{ $order->total_price }}</p>
 		</div>
 	</div>
 	</div>

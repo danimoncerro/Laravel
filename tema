@@ -21,3 +21,26 @@ Fields: id, order_id, product_id, quantity, product_price, subtotal_price, times
 - sa listeze toate produsele ( design similar cu pagina de CARt / COSUL MEU)
 
 
+10) Creeaza o pagina multumim pentru comanda. Comanda in valoare de ... va fi livrata in 48 de ore.
+Dupa ce se trimite comanda sa se redirectioneze catre pagina de "Thank you!"
+
+11) Adauga o coloana Nr. produse pe pagina istoric comenzi. Se rezolva similar cu Nr. Items.
+
+12) De exersat SQL insert, update, delete, select
+
+13) Creeaza o pagina cu formular pentru modificare status comanda (sa ai un butonas modifica status, sa se deschida o pagina in care poti modifica status si la save sa revina).
+
+14) Pagina istoric comenzi adauga buton stergere comanda.
+
+15.1) Creeaza un tabel cu numele shipping: coloane -> id, name, price (ex. posta romana 7)
+15.2) Pagina trimite comanda: adauga selectie transport (se poate face cu select/radio)
+15.3) Sa se adauge costul transportului in comanda finala (comanda trimisa)
+15.4) Pe detalii comanda afiseaza modalitate de transpor si cost.
+
+
+Pe data viitoare:
+
+Rol de utilizator 
+Rol de client
+
+
